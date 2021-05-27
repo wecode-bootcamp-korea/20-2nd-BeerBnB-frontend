@@ -1,21 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ImgSlider, { SlideBtn } from './ImgSlider';
 import styled from 'styled-components';
-import { LIST_API } from '../../../config';
 import { calculateAvgRating } from '../../../utilityFunc';
 
-const RoomCard = ({ room, setSelectedRoom, wishList }) => {
-  const [isWishList, setIsWishList] = useState(false);
-  const [saveWishList, setSaveWishList] = useState(null);
-
-  useEffect(() => {
-    const option = {
-      method: 'POST',
-    };
-    const url = `${LIST_API}/rooms/wishlist/${saveWishList}`;
-    fetch(url, option);
-  }, [saveWishList]);
-
+const RoomCard = ({ room, setSelectedRoom, setDelWishList }) => {
   return (
     <StyledRoomCard onMouseEnter={() => setSelectedRoom(room)}>
       <ImgSlider room={room} />
@@ -31,19 +19,13 @@ const RoomCard = ({ room, setSelectedRoom, wishList }) => {
             <div>최대 인원 {room.capacity}명</div>
           </Amenity>
         </InfoWrapper>
-        <WishList
+        <StyeldWishList
           onClick={() => {
-            setIsWishList(!isWishList);
-            setSaveWishList(room.room_id);
+            setDelWishList(room.room_id);
           }}
-          color={isWishList}
         >
-          {isWishList ? (
-            <i className="fas fa-heart"></i>
-          ) : (
-            <i className="far fa-heart"></i>
-          )}
-        </WishList>
+          <i class="fas fa-times"></i>
+        </StyeldWishList>
         <Rating>
           <i className="fas fa-star"></i>
           <span>{calculateAvgRating(room)}</span>
@@ -56,7 +38,7 @@ const RoomCard = ({ room, setSelectedRoom, wishList }) => {
 const StyledRoomCard = styled.article`
   display: flex;
   width: 800px;
-  padding: 20px 0;
+  padding: 20px 0; //padding 0 추가하기
   border-bottom: 1px solid #ebebeb;
 
   &:hover {
@@ -106,15 +88,14 @@ const Amenity = styled.div`
   }
 `;
 
-const WishList = styled.button`
+const StyeldWishList = styled.button`
   position: absolute;
   right: 0px;
   font-size: ${({ theme }) => theme.fontSizes.xl};
   cursor: pointer;
 
   i {
-    color: ${({ color, theme }) =>
-      color ? theme.colors.pointColor : theme.colors.textColor};
+    color: grey;
   }
 `;
 

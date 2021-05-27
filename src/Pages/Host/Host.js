@@ -24,9 +24,13 @@ const Host = () => {
   const [inputValue, setInputValue] = useState(InitialData);
 
   const sendToServer = () => {
-    const url = 'http://15.165.250.158:8000/user/host';
+    // const url = 'http://15.165.250.158:8000/user/host';
+    const url = 'http://10.58.6.60:5000/user/host';
     const option = {
       method: 'POST',
+      headers: {
+        Authorization: localStorage.getItem('Authorization'),
+      },
       body: JSON.stringify({
         name: inputValue.name,
         category: inputValue.category,
@@ -36,11 +40,14 @@ const Host = () => {
         min_date: inputValue.min_date,
         address: inputValue.address,
         price: inputValue.price,
-        images: inputValue.images, //마지막 순서로 구현 예정
-        is_refund: inputValue.is_refund,
+        //  images: inputValue.images, //마지막 순서로 구현 예정
+        is_refund: inputValue.is_refund === 'true' ? true : false, //우와!
+        city: '서울',
       }),
     };
-    fetch(url, option);
+    fetch(url, option)
+      .then(res => res.json())
+      .then(data => console.log(data));
   };
 
   return (
