@@ -17,15 +17,18 @@ const RoomCard = ({ room }) => {
 
       <StyledRoomInfo>
         <InfoWrapper>
-          <Category>{room.category}</Category>
-          <Name>{room.name}</Name>
+          <Category>{room.room_type}</Category>
+          <Name>{room.room_name}</Name>
           <Divider />
           <Amenity>
             <div>{room.amenity.join(' · ')}</div>
             <div>장기 숙박 가능 · 세탁기 · 건물 내 무료 주차</div>
           </Amenity>
         </InfoWrapper>
-        <WishList onClick={e => handleWishList(room.id)} color={isWishList}>
+        <WishList
+          onClick={e => handleWishList(room.room_id)}
+          color={isWishList}
+        >
           {isWishList ? (
             <i className="fas fa-heart"></i>
           ) : (
