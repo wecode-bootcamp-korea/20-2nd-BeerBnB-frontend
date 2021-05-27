@@ -7,18 +7,21 @@ const RoomCardList = ({
   selectedRoom,
   setSelectedRoom,
   calculateAvgRating,
+  setDelWishList,
 }) => {
   return (
     <StyledList>
-      {roomList?.map(room => {
-        return (
-          <RoomCard
-            room={room}
-            key={room.room_id}
-            setSelectedRoom={setSelectedRoom}
-          />
-        );
-      })}
+      {roomList &&
+        roomList.map(room => {
+          return (
+            <RoomCard
+              room={room}
+              key={room.room_id}
+              setSelectedRoom={setSelectedRoom}
+              setDelWishList={setDelWishList}
+            />
+          );
+        })}
     </StyledList>
   );
 };

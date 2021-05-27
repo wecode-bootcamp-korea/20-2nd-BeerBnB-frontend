@@ -1,94 +1,59 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Filter from './Components/Filter';
 import RoomCardList from './Components/RoomCardList';
 import MapWrapper from './Components/MapWrapper';
-import Pagination from './Components/Pagination';
 import Welcome from './Components/Welcome';
 import { LIST_API } from '../../config';
 
-const List = () => {
+const WishList = () => {
+  const [delWishList, setDelWishList] = useState(null);
   const [currentPageRoomList, setCurrentPageRoomList] = useState(null);
-  const [everyRoom, setEveryRoom] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
   const [selectedTooltip, setSeletedTooltip] = useState(null);
-  const ROOM_PER_PAGE = 10;
   const [filteredCondition, setFilteredCondition] = useState({
     is_refund: false,
     is_super: false,
     min_price: 0,
     max_price: 1000000,
   });
+
   const [filteredArrayTypeCondition, setFilteredArrayTypeCondition] = useState({
     room_type: null,
     amenity: null,
   });
 
-  //first page
   useEffect(() => {
-    const url = `${LIST_API}/rooms/filter`;
+    const url = `${LIST_API}/rooms/wishlist`;
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        setCurrentPageRoomList(data.thumbnail);
-        setEveryRoom(data.common);
+        setCurrentPageRoomList(data.result);
       });
+
+    // return () => {
+    //   const option = {
+    //     method: 'DELETE',
+    //   };
+    //   const url = `${LIST_API}/rooms/wishlist/${delWishList}`;
+    //   fetch(url, option);
+    // };
   }, []);
 
-  console.log(currentPageRoomList);
-
-  //filtering
   useEffect(() => {
-    const makeArrayToQuery = key => {
-      if (!filteredArrayTypeCondition[key]) {
-        return null;
-      }
-
-      return new URLSearchParams(
-        filteredArrayTypeCondition[key].map(item => [key, item])
-      ).toString();
+    const option = {
+      method: 'DELETE',
     };
-
-    const roomTypeQuery = makeArrayToQuery('room_type');
-    const amenityQuery = makeArrayToQuery('amenity');
-    const stringTypeQuery = new URLSearchParams(filteredCondition).toString();
-
-    const combineQuery = (...args) => {
-      return args.reduce((acc, val) => {
-        if (!acc) {
-          return val;
-        }
-        if (val) {
-          return acc + `&${val}`;
-        }
-        return acc;
-      }, '');
-    };
-    //연욱님 최고
-
-    const arrayTypeQuery = combineQuery(roomTypeQuery, amenityQuery);
-    const finalQueryParams = combineQuery(stringTypeQuery, arrayTypeQuery);
-
-    const url = `${LIST_API}/rooms?${finalQueryParams}`;
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        setCurrentPageRoomList(data.thumbnail);
-        setEveryRoom(data.common);
-      });
-  }, [filteredCondition, filteredArrayTypeCondition]);
-
-  //pagination
-  useEffect(() => {
-    const url = `${LIST_API}/rooms?page=${currentPage}`;
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        setCurrentPageRoomList(data.thumbnail);
-        setEveryRoom(data.common);
-      });
-  }, [currentPage]);
+    const url = `${LIST_API}/rooms/wishlist/${delWishList}`;
+    fetch(url, option).then(() => {
+      const url2 = `${LIST_API}/rooms/wishlist`;
+      fetch(url2)
+        .then(res => res.json())
+        .then(data => {
+          setCurrentPageRoomList(data.result);
+        });
+    });
+  }, [delWishList]);
 
   return (
     <>
@@ -96,7 +61,7 @@ const List = () => {
         <StyledList>
           <StyledRoomWrapper>
             <div>300개 이상의 숙소</div>
-            <StyledTitle>서울의 숙소</StyledTitle>
+            <StyledTitle>민정님의 위시리스트</StyledTitle>
             <Filter
               selectedTooltip={selectedTooltip}
               setSeletedTooltip={setSeletedTooltip}
@@ -110,12 +75,7 @@ const List = () => {
               roomList={currentPageRoomList}
               selectedRoom={selectedRoom}
               setSelectedRoom={setSelectedRoom}
-            />
-            <Pagination
-              setCurrentPage={setCurrentPage}
-              currentPage={currentPage}
-              totalRooms={everyRoom}
-              roomsPerPage={ROOM_PER_PAGE}
+              setDelWishList={setDelWishList}
             />
           </StyledRoomWrapper>
           <StyledMapWrapper>
@@ -130,8 +90,6 @@ const List = () => {
     </>
   );
 };
-
-export default List;
 
 const StyledList = styled.div`
   display: flex;
@@ -158,3 +116,5 @@ const StyledTitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.xxl};
   font-weight: bold;
 `;
+
+export default WishList;

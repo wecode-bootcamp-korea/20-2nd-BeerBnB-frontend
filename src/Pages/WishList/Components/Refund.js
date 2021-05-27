@@ -2,32 +2,32 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Tooltip from './Tooltip';
 
-const SuperHost = ({
+const Refund = ({
   value,
   selectedTooltip,
   setSeletedTooltip,
   filteredCondition,
   setFilteredCondition,
 }) => {
-  const [isSuperHost, setIsSuperHOst] = useState(false);
+  const [isRefundable, setIsRefundalbe] = useState(false);
 
   const moveSwitch = () => {
-    setIsSuperHOst(!isSuperHost);
+    setIsRefundalbe(!isRefundable);
   };
 
   return (
-    <StyledSuperHost onClick={() => setSeletedTooltip(value)}>
-      <Title border={selectedTooltip === value}>슈퍼호스트</Title>
+    <StyledRefund onClick={() => setSeletedTooltip(value)}>
+      <Title border={selectedTooltip === value}>유연한 환불 정책</Title>
       {selectedTooltip === value && (
         <Tooltip>
           <OptionWrapper>
-            <Option>슈퍼 호스트의 숙소만 검색 결과에 표시</Option>
-            <SwitchWrapper onClick={moveSwitch} bgColor={isSuperHost}>
-              <Switch move={isSuperHost} />
+            <Option>유연한 환불 정책을 제공하는 숙소만 검색 결과에 표시</Option>
+            <SwitchWrapper onClick={moveSwitch} bgColor={isRefundable}>
+              <Switch move={isRefundable} />
             </SwitchWrapper>
           </OptionWrapper>
           <Selection>
-            <Delete onClick={moveSwitch} color={isSuperHost}>
+            <Delete onClick={moveSwitch} color={isRefundable}>
               지우기
             </Delete>
             <Save
@@ -35,7 +35,7 @@ const SuperHost = ({
                 e.stopPropagation();
                 setFilteredCondition({
                   ...filteredCondition,
-                  is_super: isSuperHost,
+                  is_refund: isRefundable,
                 });
                 setSeletedTooltip(null);
               }}
@@ -45,11 +45,11 @@ const SuperHost = ({
           </Selection>
         </Tooltip>
       )}
-    </StyledSuperHost>
+    </StyledRefund>
   );
 };
 
-const StyledSuperHost = styled.section`
+const StyledRefund = styled.section`
   position: relative;
 `;
 
@@ -110,6 +110,15 @@ const Switch = styled.div`
   transform: ${({ move }) => move && 'translateX(50%)'};
 `;
 
+const Selection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  height: 65px;
+  align-items: center;
+  border-top: 1px solid ${({ theme }) => theme.colors.borderColor};
+`;
+
 const Delete = styled.button`
   width: 66px;
   height: 40px;
@@ -125,14 +134,6 @@ const Delete = styled.button`
   }
 `;
 
-const Selection = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  align-items: center;
-  border-top: 1px solid ${({ theme }) => theme.colors.borderColor};
-`;
-
 const Save = styled.button`
   width: 60px;
   height: 34px;
@@ -142,4 +143,4 @@ const Save = styled.button`
   border-radius: 5px;
 `;
 
-export default SuperHost;
+export default Refund;
