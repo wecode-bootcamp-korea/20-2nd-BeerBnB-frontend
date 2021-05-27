@@ -5,6 +5,7 @@ export const theme = {
     subBackground: '#F4F4F4',
     borderColor: '#DDDDDD',
     borderColorDark: '#c4c4c4',
+    mainTextColor: '#FFF8F4',
   },
 
   fontSizes: {
