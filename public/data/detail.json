@@ -1,0 +1,75 @@
+{
+  "detail": {
+    "room_name": "성수호텔",
+    "address": "서울특별시 성동구 성수동1가 뚝섬로1길 31 서울숲M타워 1001호",
+    "price": "140000.00",
+    "room_type": "호텔",
+    "image": "images/aleks-marinkovic--dlVOoZSYf0-unsplash.jpg",
+    "is_super": true,
+    "host": "김하나",
+    "capacity": "5",
+    "amenity": [
+      {
+        "id": 1,
+        "icon": "fas fa-fan",
+        "description": "에어컨"
+      },
+      {
+        "id": 2,
+        "icon": "fas fa-coffee",
+        "description": "커피"
+      },
+      {
+        "id": 3,
+        "icon": "fas fa-wifi",
+        "description": "와이파이"
+      },
+      {
+        "id": 4,
+        "icon": "fas fa-utensils",
+        "description": "조리도구"
+      },
+      {
+        "id": 5,
+        "icon": "fas fa-wine-bottle",
+        "description": "와인"
+      },
+      {
+        "id": 7,
+        "icon": "fas fa-glass-whiskey",
+        "description": "위스키"
+      },
+      {
+        "id": 8,
+        "icon": "fas fa-glass-martini-alt",
+        "description": "칵테일"
+      }
+    ],
+    "rating": [
+      {
+        "category": "cleanliness",
+        "category_rating": 2
+      },
+      {
+        "category": "communication",
+        "category_rating": 3
+      },
+      {
+        "category": "checkin",
+        "category_rating": 5
+      },
+      {
+        "category": "accuracy",
+        "category_rating": 1
+      },
+      {
+        "category": "location",
+        "category_rating": 2
+      },
+      {
+        "category": "cost_effectivenes",
+        "category_rating": 3
+      }
+    ]
+  }
+}
