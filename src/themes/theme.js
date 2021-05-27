@@ -4,6 +4,7 @@ export const theme = {
     textColor: '#222',
     subBackground: '#F4F4F4',
     borderColor: '#DDDDDD',
+    borderColorDark: '#c4c4c4',
   },
 
   fontSizes: {
