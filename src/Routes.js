@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './themes/theme';
 import Main from './Pages/Main/Main';
 import List from './Pages/List/List';
+import Host from './Pages/Host/Host';
 import GlobalStyle from './Styles/globalStyles';
 
 class Routes extends React.Component {
@@ -15,6 +16,7 @@ class Routes extends React.Component {
           <Switch>
             <Route exact path="/" component={Main} />
             <Route exact path="/list" component={List} />
+            <Route exact path="/host" component={Host} />
           </Switch>
         </Router>
       </ThemeProvider>
