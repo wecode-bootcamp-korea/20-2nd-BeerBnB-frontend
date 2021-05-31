@@ -2,14 +2,7 @@ import React, { useState, useEffect } from 'react';
 import RoomCard from './RoomCard';
 import styled from 'styled-components';
 
-const RoomCardList = () => {
-  const [roomList, setRoomList] = useState();
-  useEffect(() => {
-    fetch('/data/roomcard.json')
-      .then(res => res.json())
-      .then(data => setRoomList(data.room_info));
-  }, [setRoomList]);
-
+const RoomCardList = ({ roomList }) => {
   return (
     <StyledList>
       {roomList &&

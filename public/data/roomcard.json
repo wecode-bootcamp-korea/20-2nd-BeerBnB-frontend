@@ -41,8 +41,179 @@
 
       "amenity": ["주방", "무선 인터넷", "에어컨", "헤어드라이어"],
       "rating": 4.7,
-      "is_super": false,
-      "price": "120000"
+      "is_super": false
+    },
+    {
+      "id": 3,
+      "name": "홍대의 당신의 아름다운 장기 렌털집!",
+      "category": "아파트 전체",
+      "image": [
+        "/images/alex-simpson-Ku1OoPLeMQ8-unsplash (1).jpg",
+        "/images/judith-girard-marczak-fXSAGuWQCrQ-unsplash.jpg",
+        "/images/paras-lahori-lStcsrkGnn4-unsplash.jpg",
+        "/images/rovshan-allahverdiyev-II6-iFUU4z4-unsplash.jpg"
+      ],
+      "imgAlt": "비어비엔비",
+      "coordinates": { "lat": 37.566536, "lng": 126.977962 },
+
+      "amenity": [
+        "주방",
+        "무선 인터넷",
+        "에어컨",
+        "헤어드라이어",
+        "맥주",
+        "위스키",
+        "와인",
+        "칵테일"
+      ],
+      "rating": 4.86,
+      "is_super": true
+    },
+    {
+      "id": 4,
+      "name": "홍대입구역 도보 5분 조용하고 깔끔한 집",
+      "category": "집 전체",
+      "image": [
+        "/images/alana-harris-g3owRVqS73M-unsplash.jpg",
+        "/images/judith-girard-marczak-fXSAGuWQCrQ-unsplash.jpg",
+        "/images/paras-lahori-lStcsrkGnn4-unsplash.jpg",
+        "/images/rovshan-allahverdiyev-II6-iFUU4z4-unsplash.jpg"
+      ],
+      "imgAlt": "비어비엔비",
+      "coordinates": { "lat": 37.566535, "lng": 126.977966 },
+
+      "amenity": ["주방", "무선 인터넷", "에어컨", "헤어드라이어"],
+      "rating": 4.7,
+      "is_super": false
+    },
+    {
+      "id": 5,
+      "name": "홍대의 당신의 아름다운 장기 렌털집!",
+      "category": "아파트 전체",
+      "image": [
+        "/images/alex-simpson-Ku1OoPLeMQ8-unsplash (1).jpg",
+        "/images/judith-girard-marczak-fXSAGuWQCrQ-unsplash.jpg",
+        "/images/paras-lahori-lStcsrkGnn4-unsplash.jpg",
+        "/images/rovshan-allahverdiyev-II6-iFUU4z4-unsplash.jpg"
+      ],
+      "imgAlt": "비어비엔비",
+      "coordinates": { "lat": 37.566536, "lng": 126.977964 },
+
+      "amenity": [
+        "주방",
+        "무선 인터넷",
+        "에어컨",
+        "헤어드라이어",
+        "맥주",
+        "위스키",
+        "와인",
+        "칵테일"
+      ],
+      "rating": 4.86,
+      "is_super": true
+    },
+    {
+      "id": 6,
+      "name": "홍대입구역 도보 5분 조용하고 깔끔한 집",
+      "category": "집 전체",
+      "image": [
+        "/images/alana-harris-g3owRVqS73M-unsplash.jpg",
+        "/images/judith-girard-marczak-fXSAGuWQCrQ-unsplash.jpg",
+        "/images/paras-lahori-lStcsrkGnn4-unsplash.jpg",
+        "/images/rovshan-allahverdiyev-II6-iFUU4z4-unsplash.jpg"
+      ],
+      "imgAlt": "비어비엔비",
+      "coordinates": { "lat": 37.566536, "lng": 126.977967 },
+
+      "amenity": ["주방", "무선 인터넷", "에어컨", "헤어드라이어"],
+      "rating": 4.7,
+      "is_super": false
+    },
+    {
+      "id": 7,
+      "name": "홍대의 당신의 아름다운 장기 렌털집!",
+      "category": "아파트 전체",
+      "image": [
+        "/images/alex-simpson-Ku1OoPLeMQ8-unsplash (1).jpg",
+        "/images/judith-girard-marczak-fXSAGuWQCrQ-unsplash.jpg",
+        "/images/paras-lahori-lStcsrkGnn4-unsplash.jpg",
+        "/images/rovshan-allahverdiyev-II6-iFUU4z4-unsplash.jpg"
+      ],
+      "imgAlt": "비어비엔비",
+      "coordinates": { "lat": 37.566536, "lng": 126.977968 },
+
+      "amenity": [
+        "주방",
+        "무선 인터넷",
+        "에어컨",
+        "헤어드라이어",
+        "맥주",
+        "위스키",
+        "와인",
+        "칵테일"
+      ],
+      "rating": 4.86,
+      "is_super": true
+    },
+    {
+      "id": 8,
+      "name": "홍대입구역 도보 5분 조용하고 깔끔한 집",
+      "category": "집 전체",
+      "image": [
+        "/images/alana-harris-g3owRVqS73M-unsplash.jpg",
+        "/images/judith-girard-marczak-fXSAGuWQCrQ-unsplash.jpg",
+        "/images/paras-lahori-lStcsrkGnn4-unsplash.jpg",
+        "/images/rovshan-allahverdiyev-II6-iFUU4z4-unsplash.jpg"
+      ],
+      "imgAlt": "비어비엔비",
+      "coordinates": { "lat": 37.566536, "lng": 126.977962 },
+
+      "amenity": ["주방", "무선 인터넷", "에어컨", "헤어드라이어"],
+      "rating": 4.7,
+      "is_super": false
+    },
+    {
+      "id": 9,
+      "name": "홍대의 당신의 아름다운 장기 렌털집!",
+      "category": "아파트 전체",
+      "image": [
+        "/images/alex-simpson-Ku1OoPLeMQ8-unsplash (1).jpg",
+        "/images/judith-girard-marczak-fXSAGuWQCrQ-unsplash.jpg",
+        "/images/paras-lahori-lStcsrkGnn4-unsplash.jpg",
+        "/images/rovshan-allahverdiyev-II6-iFUU4z4-unsplash.jpg"
+      ],
+      "imgAlt": "비어비엔비",
+      "coordinates": { "lat": 37.566536, "lng": 126.977961 },
+
+      "amenity": [
+        "주방",
+        "무선 인터넷",
+        "에어컨",
+        "헤어드라이어",
+        "맥주",
+        "위스키",
+        "와인",
+        "칵테일"
+      ],
+      "rating": 4.86,
+      "is_super": true
+    },
+    {
+      "id": 10,
+      "name": "홍대입구역 도보 5분 조용하고 깔끔한 집",
+      "category": "집 전체",
+      "image": [
+        "/images/alana-harris-g3owRVqS73M-unsplash.jpg",
+        "/images/judith-girard-marczak-fXSAGuWQCrQ-unsplash.jpg",
+        "/images/paras-lahori-lStcsrkGnn4-unsplash.jpg",
+        "/images/rovshan-allahverdiyev-II6-iFUU4z4-unsplash.jpg"
+      ],
+      "imgAlt": "비어비엔비",
+      "coordinates": { "lat": 37.566536, "lng": 126.977969 },
+
+      "amenity": ["주방", "무선 인터넷", "에어컨", "헤어드라이어"],
+      "rating": 4.7,
+      "is_super": false
     }
   ]
 }

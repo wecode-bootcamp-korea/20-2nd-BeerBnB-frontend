@@ -1,31 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Filter from './Components/Filter';
 import RoomCardList from './Components/RoomCardList';
+import Pagination from './Components/Pagination';
 
 const List = () => {
+  const [roomList, setRoomList] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+  const roomsPerPage = 4;
+
+  useState(() => {
+    fetch('/data/roomcard.json')
+      .then(res => res.json())
+      .then(data => setRoomList(data.room_info));
+  }, [setRoomList]);
+
+  const goToAnotherPage = number => {
+    setCurrentPage(number);
+    //서버에 요청하는 함수
+  };
+
   return (
     <StyledList>
-      <StyledRoomWrapper>
-        <div>300개 이상의 숙소</div>
-        <StyledTitle>서울의 숙소</StyledTitle>
-        <Filter />
-        <StyledSubTitle>
-          여행 날짜와 게스트 인원수를 입력하면 1박당 총 요금을 확인할 수
-          있습니다.
-        </StyledSubTitle>
-        <StyledData>
-          <img
-            src="https://a0.muscache.com/airbnb/static/packages/icon-uc-trophy.9ee78aa1.gif"
-            alt="crown"
+      {roomList && (
+        <StyledRoomWrapper>
+          <div>300개 이상의 숙소</div>
+          <StyledTitle>서울의 숙소</StyledTitle>
+          <Filter />
+          <StyledSubTitle>
+            여행 날짜와 게스트 인원수를 입력하면 1박당 총 요금을 확인할 수
+            있습니다.
+          </StyledSubTitle>
+          <StyledData>
+            <img
+              src="https://a0.muscache.com/airbnb/static/packages/icon-uc-trophy.9ee78aa1.gif"
+              alt="crown"
+            />
+            <div>390,000명의 게스트가 서울의 숙소에 머물렀습니다. </div>
+            <span>
+              게스트는 평균적으로 이 숙소를 별 5개 만점에 4.7점으로
+              평가했습니다.
+            </span>
+          </StyledData>
+          <RoomCardList roomList={roomList} />
+          <Pagination
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            goToAnotherPage={goToAnotherPage}
+            totalRooms={roomList.length}
+            roomsPerPage={roomsPerPage}
           />
-          <div>390,000명의 게스트가 서울의 숙소에 머물렀습니다. </div>
-          <span>
-            게스트는 평균적으로 이 숙소를 별 5개 만점에 4.7점으로 평가했습니다.
-          </span>
-        </StyledData>
-        <RoomCardList />
-      </StyledRoomWrapper>
+        </StyledRoomWrapper>
+      )}
     </StyledList>
   );
 };
