@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const Step2 = ({ setCurrentPage, setInputValue, inputValue }) => {
   const changeOption = e => {
@@ -16,8 +16,7 @@ const Step2 = ({ setCurrentPage, setInputValue, inputValue }) => {
   };
 
   const decreaseStay = e => {
-    console.log(e.target.name);
-    const { name } = e.target;
+    const { name } = e.currentTarget;
     if (inputValue[name] < 1) return;
     setInputValue({
       ...inputValue,
@@ -26,7 +25,7 @@ const Step2 = ({ setCurrentPage, setInputValue, inputValue }) => {
   };
 
   const increaseStay = e => {
-    const { name } = e.target;
+    const { name } = e.currentTarget;
     setInputValue({
       ...inputValue,
       [name]: inputValue[name] + 1,
@@ -38,7 +37,7 @@ const Step2 = ({ setCurrentPage, setInputValue, inputValue }) => {
       <StyledHostStart>
         <section>
           <StyledStep>
-            <span>2단계</span>
+            <StyledCurrentPage>2단계</StyledCurrentPage>
             <StyledQuestion>어떤 편의시설을 제공하시나요?</StyledQuestion>
             <StyledDirection>
               일반적으로 게스트가 기대하는 편의시설 목록입니다. 숙소를 등록한 후
@@ -142,10 +141,10 @@ const Step2 = ({ setCurrentPage, setInputValue, inputValue }) => {
                     value={`${inputValue.min_date} 박`}
                   />
                   <button name="min_date" onClick={decreaseStay}>
-                    -
+                    <i class="fas fa-minus"></i>
                   </button>
                   <button name="min_date" onClick={increaseStay}>
-                    +
+                    <i class="fas fa-plus"></i>
                   </button>
                 </div>
               </StyledDurationSelection>
@@ -159,10 +158,10 @@ const Step2 = ({ setCurrentPage, setInputValue, inputValue }) => {
                     value={`${inputValue.max_date} 박`}
                   />
                   <button name="max_date" onClick={decreaseStay}>
-                    -
+                    <i class="fas fa-minus"></i>
                   </button>
                   <button name="max_date" onClick={increaseStay}>
-                    +
+                    <i class="fas fa-plus"></i>
                   </button>
                 </div>
               </StyledDurationSelection>
@@ -188,13 +187,13 @@ const StyledHostPage = styled.div`
   width: 1200px;
   height: 100vh;
   margin: 0 auto;
-  padding: 30px;
+  padding: 10px 30px;
 `;
 const StyledHostStart = styled.div`
   display: flex;
   justify-content: center;
   width: 1200px;
-  height: 770px;
+  height: 730px;
 
   section {
     flex: 1;
@@ -214,13 +213,13 @@ const StyledHostStart = styled.div`
 `;
 
 const StyledStep = styled.div`
-  margin: 30px 0 40px;
+  margin: 10px 0 25px;
+`;
 
-  span {
-    margin-bottom: 15px;
-    font-weight: bold;
-    color: gray;
-  }
+const StyledCurrentPage = styled.div`
+  margin-bottom: 25px;
+  font-weight: bold;
+  color: gray;
 `;
 
 const StyledQuestion = styled.h2`
@@ -260,7 +259,6 @@ const StyledSubCategory = styled.div`
 `;
 
 const StyledDuration = styled.div`
-  /* display: inline-block; */
   display: flex;
   align-items: center;
   border-radius: 10px;
@@ -279,14 +277,14 @@ const StyledDurationSelection = styled.div`
   div {
     padding: 0 12px;
     margin-right: 10px;
-    border: 1px solid black;
+    border: 1px solid #333;
     border-radius: 10px;
   }
 
   input {
     width: 100px;
     border-radius: 10px;
-    font-size: ${({ theme }) => theme.fontSizes.l};
+    font-size: 16px;
 
     &::placeholder {
       margin-left: 10px;
@@ -294,10 +292,9 @@ const StyledDurationSelection = styled.div`
   }
 
   button {
-    width: 44px;
-    height: 44px;
-    font-size: ${({ theme }) => theme.fontSizes.xl};
-    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
     cursor: pointer;
   }
 `;
@@ -309,7 +306,7 @@ const StyledBtn = styled.div`
 `;
 
 const StyledPrevtBtn = styled.button`
-  color: #008489;
+  color: #3fcaa1;
   font-size: inherit;
   cursor: pointer;
 `;
@@ -317,7 +314,7 @@ const StyledPrevtBtn = styled.button`
 const StyledNextBtn = styled.button`
   padding: 10px 15px;
   margin: 12px 0 28px;
-  background-color: #008489;
+  background-color: #3fcaa1;
   color: #fff;
   border-radius: 10px;
   font-size: inherit;

@@ -1,9 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const Step1 = ({ setCurrentPage, inputValue, setInputValue }) => {
   const decreaseCapacity = e => {
-    const { name } = e.target;
+    const { name } = e.currentTarget;
     if (inputValue[name] < 1) return;
     setInputValue({
       ...inputValue,
@@ -12,7 +12,7 @@ const Step1 = ({ setCurrentPage, inputValue, setInputValue }) => {
   };
 
   const increaseCapacity = e => {
-    const { name } = e.target;
+    const { name } = e.currentTarget;
     setInputValue({
       ...inputValue,
       [name]: inputValue[name] + 1,
@@ -25,6 +25,7 @@ const Step1 = ({ setCurrentPage, inputValue, setInputValue }) => {
         <StyledSection>
           <StyledTitle>
             Rich님 안녕하세요!
+            {/* 로그인 한 이름 연결하기 */}
             <br />
             숙소 등록을 시작해 볼까요?
           </StyledTitle>
@@ -41,14 +42,11 @@ const Step1 = ({ setCurrentPage, inputValue, setInputValue }) => {
                   setInputValue({ ...inputValue, name: e.target.value })
                 }
               />
-              {inputValue.name && (
-                <input type="text" name="" placeholder="동호수(선택사항)" />
-              )}
             </StyledInput>
           </StyledStep>
           <StyledStep>
             <StyledQuestion>
-              숙소의 위치를 숙소의 건물 유형을 선택해주세요..
+              숙소의 위치를 숙소의 건물 유형을 선택해주세요.
             </StyledQuestion>
             <StyledInput>
               <select
@@ -65,7 +63,7 @@ const Step1 = ({ setCurrentPage, inputValue, setInputValue }) => {
                 <option value="주택">주택</option>
               </select>
               {inputValue.category && (
-                <input type="text" name="" placeholder="동호수(선택사항)" />
+                <input type="text" placeholder="동호수(선택사항)" />
               )}
             </StyledInput>
           </StyledStep>
@@ -86,24 +84,24 @@ const Step1 = ({ setCurrentPage, inputValue, setInputValue }) => {
                   <StyledAge>성인</StyledAge>
 
                   <StyledAgeBtn name="adult" onClick={decreaseCapacity}>
-                    -
+                    <i className="fas fa-minus" />
                   </StyledAgeBtn>
                   <StyledCapacityValue>{inputValue.adult}</StyledCapacityValue>
                   <StyledAgeBtn name="adult" onClick={increaseCapacity}>
-                    +
+                    <i className="fas fa-plus" />
                   </StyledAgeBtn>
                 </StyledSelectionBtn>
 
                 <StyledSelectionBtn>
                   <StyledAge>어린이</StyledAge>
                   <StyledAgeBtn name="children" onClick={decreaseCapacity}>
-                    -
+                    <i className="fas fa-minus" />
                   </StyledAgeBtn>
                   <StyledCapacityValue>
                     {inputValue.children}
                   </StyledCapacityValue>
                   <StyledAgeBtn name="children" onClick={increaseCapacity}>
-                    +
+                    <i className="fas fa-plus" />
                   </StyledAgeBtn>
                 </StyledSelectionBtn>
               </StyledCapacity>
@@ -129,14 +127,14 @@ const StyledHostPage = styled.div`
   width: 1200px;
   height: 100vh;
   margin: 0 auto;
-  padding: 30px;
+  padding: 10px 30px;
 `;
 
 const StyledHostStart = styled.div`
   display: flex;
   justify-content: center;
   width: 1200px;
-  height: 770px;
+  height: 730px;
 `;
 
 const StyledSection = styled.section`
@@ -151,21 +149,26 @@ const StyledAside = styled.aside`
 `;
 
 const StyledSideImg = styled.img`
-  width: 530px;
-  height: 100%;
+  width: 480px;
 `;
 
 const StyledTitle = styled.h1`
   margin: 30px 0 60px;
+  color: transparent;
   font-size: 42px;
+  font-weight: bold;
+  line-height: 1.5;
+  background: linear-gradient(66deg, #3fcaa1 0%, #32a180 54%, #0c261e 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
 `;
 
 const StyledStep = styled.div`
   margin: 30px 0 40px;
 `;
 
-const StyledCurrentPage = styled.span`
-  margin-bottom: 15px;
+const StyledCurrentPage = styled.div`
+  margin-bottom: 25px;
   font-weight: bold;
   color: gray;
 `;
@@ -187,18 +190,18 @@ const StyledInput = styled.div`
 
   input,
   select {
-    width: 500px;
-    height: 50px;
-    padding: 12px;
+    width: 450px;
+    height: 40px;
+    padding: 5px 15px;
     margin-bottom: 10px;
-    border: 1px solid black;
+    border: 1px solid grey;
     border-radius: 10px;
-    font-size: ${({ theme }) => theme.fontSizes.l};
+    font-size: 16px;
     outline: none;
+    appearance: none;
 
     &:focus {
-      margin-bottom: 8px;
-      border: 2px solid black;
+      border: 1px solid black;
     }
   }
 
@@ -236,14 +239,16 @@ const StyledAge = styled.span`
   width: 45px;
   margin-right: 15px;
   text-align: center;
+  color: gray;
 `;
 
 const StyledAgeBtn = styled.button`
   width: 32px;
   height: 32px;
-  border: 1px solid #008489;
+  border: 1.5px solid #3fcaa1;
   border-radius: 50%;
-  color: #008489;
+  color: #3fcaa1;
+  cursor: pointer;
 `;
 
 const StyledCapacityValue = styled.div`
@@ -262,7 +267,7 @@ const StyledBtn = styled.div`
 `;
 
 const StyledPrevtBtn = styled.button`
-  color: #008489;
+  color: #3fcaa1;
   font-size: inherit;
   cursor: pointer;
 `;
@@ -270,7 +275,7 @@ const StyledPrevtBtn = styled.button`
 const StyledNextBtn = styled.button`
   padding: 10px 15px;
   margin: 12px 0 28px;
-  background-color: #008489;
+  background-color: #3fcaa1;
   color: #fff;
   border-radius: 10px;
   font-size: inherit;
