@@ -7,6 +7,14 @@
       name="description"
       content="Web site created using create-react-app"
     />
+    <script
+      src="https://kit.fontawesome.com/c539d32fc7.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?v=3.28&libraries=places,geometry"
+    ></script>
     <title>React App</title>
     <link
       rel="stylesheet"
@@ -14,8 +22,13 @@
       integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
       crossorigin="anonymous"
     />
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+      Kakao.init('42936f32f272cb5fcce28dc4dc7c62ce');
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <div id="modalRoot"></div>
   </body>
 </html>
