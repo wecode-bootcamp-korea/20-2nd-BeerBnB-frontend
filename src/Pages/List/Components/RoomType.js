@@ -4,41 +4,48 @@ import RoomTypeOption from './RoomTypeOption';
 import styled from 'styled-components';
 
 const ROOM_TYPE_LIST = [
-  { id: 1, type: '집 전체', info: '집 전체를 단독으로 사용합니다' },
+  { id: 1, type: '아파트', info: '집 전체를 단독으로 사용합니다' },
   {
     id: 2,
-    type: '개인실',
+    type: '주택',
     info: '침실은 단독으로 쓰고, 이외의 공간은 호스트나 다른 게스트와 함께 이용할 수도 있습니다',
   },
   {
     id: 3,
-    type: '호텔 객실',
+    type: '호텔',
     info: '부티크 호텔, 호스텔 등의 개인실이나 다인실을 이용합니다',
   },
   {
     id: 4,
-    type: '다인실',
+    type: '별채',
     info: '사적 공간 없이, 침실이나 욕실 등을 호스트나 다른 게스트와 함께 이용합니다',
   },
 ];
 
 const INITIAL_CHECKED_STATUS = {
-  '집 전체': false,
-  개인실: false,
-  '호텔 객실': false,
-  다인실: false,
+  아파트: false,
+  주택: false,
+  호텔: false,
+  별채: false,
 };
 
-const RoomType = ({ toggleTooltip, value, selectedTooltip, sendToServer }) => {
+const RoomType = ({
+  value,
+  selectedTooltip,
+  setSeletedTooltip,
+  filteredArrayTypeCondition,
+  setFilteredArrayTypeCondition,
+}) => {
   const [roomType, setRoomType] = useState([]);
   const [isChecked, setIsChecked] = useState(INITIAL_CHECKED_STATUS);
+  const [changedDataType, setChangeDataType] = useState({ room_type: null });
 
-  const changeOption = item => {
-    setIsChecked({ ...isChecked, [item.name]: item.checked });
-    const copyRoomType = [...roomType];
-    copyRoomType.includes(item.name)
-      ? setRoomType(copyRoomType.filter(room => room !== item.name))
-      : setRoomType([...roomType, item.name]);
+  const changeOption = e => {
+    const { name, checked } = e.target;
+    setIsChecked({ ...isChecked, [name]: checked });
+    roomType.includes(name)
+      ? setRoomType(roomType.filter(room => room !== name))
+      : setRoomType([...roomType, name]);
   };
 
   const deleteData = () => {
@@ -47,7 +54,7 @@ const RoomType = ({ toggleTooltip, value, selectedTooltip, sendToServer }) => {
   };
 
   return (
-    <StyledRoomType onClick={() => toggleTooltip(value)}>
+    <StyledRoomType onClick={() => setSeletedTooltip(value)}>
       <Title border={selectedTooltip === value}>숙소 유형</Title>
 
       {selectedTooltip === value && (
@@ -71,7 +78,12 @@ const RoomType = ({ toggleTooltip, value, selectedTooltip, sendToServer }) => {
             <Save
               onClick={e => {
                 e.stopPropagation();
-                sendToServer(roomType);
+                setChangeDataType({ ...changedDataType });
+                setFilteredArrayTypeCondition({
+                  ...filteredArrayTypeCondition,
+                  room_type: roomType,
+                });
+                setSeletedTooltip(null);
               }}
             >
               저장

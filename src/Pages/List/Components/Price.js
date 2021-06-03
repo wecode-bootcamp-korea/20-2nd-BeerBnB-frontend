@@ -1,48 +1,66 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Tooltip from './Tooltip';
-import PriceRange from './PriceRange';
 
-const Price = ({ toggleTooltip, value, selectedTooltip }) => {
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(0);
+const Price = ({
+  value,
+  selectedTooltip,
+  setSeletedTooltip,
+  filteredCondition,
+  setFilteredCondition,
+}) => {
+  const [price, setPrice] = useState({ min: '', max: '' });
 
   const deleteData = () => {
-    setMinPrice(0);
-    setMaxPrice(0);
+    setPrice({ min: '', max: '' });
   };
+
   return (
-    <StyledPrice onClick={() => toggleTooltip(value)}>
+    <StyledPrice onClick={() => setSeletedTooltip(value)}>
       <Title border={selectedTooltip === value}>요금</Title>
 
       {selectedTooltip === value && (
         <Tooltip>
           <OptionWrapper>
             <Option>
-              {/* <StayledRangeBar>
-                <input type="range" name="" id="" min="0" max="200000" />
-              </StayledRangeBar> */}
               <StyledRangeWrapper>
                 <StyledRange>
                   <label htmlFor="최저요금">최저요금</label>
-                  <input id="최저요금" type="text" />
+                  <input
+                    id="최저요금"
+                    type="text"
+                    placeholder="0"
+                    value={price.min}
+                    onChange={e => setPrice({ ...price, min: e.target.value })}
+                  />
                 </StyledRange>
                 <span> - </span>
                 <StyledRange>
                   <label htmlFor="최고요금">최고요금</label>
-                  <input id="최고요금" type="text" />
+                  <input
+                    id="최고요금"
+                    type="text"
+                    placeholder="1,000,000"
+                    value={price.max.toLocaleString()}
+                    onChange={e => setPrice({ ...price, max: e.target.value })}
+                  />
                 </StyledRange>
-                {/* <PriceRange /> */}
               </StyledRangeWrapper>
             </Option>
           </OptionWrapper>
           <Selection>
-            <Delete onClick={deleteData} color={minPrice || maxPrice}>
+            <Delete onClick={deleteData} color={price.min || price.max}>
               지우기
             </Delete>
             <Save
               onClick={e => {
                 e.stopPropagation();
+                setFilteredCondition({
+                  ...filteredCondition,
+                  min_price: price.min,
+                  max_price: price.max,
+                });
+                setSeletedTooltip(null);
               }}
             >
               저장
@@ -86,42 +104,6 @@ const Option = styled.div`
   margin-right: 10px;
 `;
 
-const SwitchWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 48px;
-  height: 32px;
-  padding: 3px 4px;
-  background-color: ${({ theme, bgColor }) =>
-    bgColor ? theme.colors.textColor : '#b0b0b0'};
-  border-radius: 40px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${({ theme, bgColor }) =>
-      bgColor ? theme.colors.textColor : '#767676'};
-  }
-`;
-
-const Switch = styled.div`
-  position: absolute;
-  width: 26px;
-  height: 26px;
-  background-color: #fff;
-  border-radius: 50%;
-  transition: all 250ms ease-in;
-  transform: ${({ move }) => move && 'translateX(50%)'};
-`;
-
-const StayledRangeBar = styled.div`
-  margin-bottom: 20px;
-
-  input {
-    width: 250px;
-  }
-`;
-
 const StyledRangeWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -129,16 +111,19 @@ const StyledRangeWrapper = styled.div`
 `;
 
 const StyledRange = styled.div`
-  /* padding: 5px; */
-  margin: 5px;
-  border: 1px solid black;
+  margin: 5px 10px;
+  border: 1px solid ${({ theme }) => theme.colors.borderColor};
   border-radius: 8px;
+
   label {
+    padding: 8px;
     color: grey;
     font-size: ${({ theme }) => theme.fontSizes.s};
   }
+
   input {
     width: 130px;
+    padding: 0 8px;
     font-size: 16px;
 
     &:focus {

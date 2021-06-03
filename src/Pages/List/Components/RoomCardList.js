@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import RoomCard from './RoomCard';
+import React from 'react';
 import styled from 'styled-components';
+import RoomCard from './RoomCard';
 
-const RoomCardList = () => {
-  const [roomList, setRoomList] = useState();
-  useEffect(() => {
-    fetch('/data/roomcard.json')
-      .then(res => res.json())
-      .then(data => setRoomList(data.room_info));
-  }, [setRoomList]);
-
+const RoomCardList = ({
+  roomList,
+  selectedRoom,
+  setSelectedRoom,
+  calculateAvgRating,
+}) => {
   return (
     <StyledList>
-      {roomList &&
-        roomList.map(room => {
-          return <RoomCard room={room} key={room.id} />;
-        })}
+      {roomList?.map(room => {
+        return (
+          <RoomCard
+            room={room}
+            key={room.room_id}
+            setSelectedRoom={setSelectedRoom}
+          />
+        );
+      })}
     </StyledList>
   );
 };

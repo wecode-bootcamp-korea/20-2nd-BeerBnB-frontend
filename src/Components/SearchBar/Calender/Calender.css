@@ -1,0 +1,43 @@
+/* .DayPicker {
+  background: #fff;
+  position: relative;
+  text-align: left;
+  border-radius: 20px;
+} */
+
+.CalendarDay__default {
+  border: none;
+  color: #484848;
+  background: #fff;
+  border-radius: 30px;
+}
+
+.CalendarDay__default:hover {
+  background: #fff1eb;
+  border-radius: 30px;
+  border: none;
+  color: inherit;
+}
+
+.CalendarDay__selected_span {
+  background: #fff1eb;
+  color: black;
+}
+
+.CalendarDay__selected {
+  background: #ff385c;
+  color: white;
+  border-radius: 20px;
+}
+
+.CalendarDay__selected:hover {
+  background: #ff385c;
+  color: white;
+  border-radius: 20px;
+}
+
+.CalendarDay__hovered_span:hover,
+.CalendarDay__hovered_span {
+  background: #fff1eb;
+  border: none;
+}

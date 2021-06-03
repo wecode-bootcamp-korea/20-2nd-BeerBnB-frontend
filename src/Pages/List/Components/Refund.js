@@ -2,32 +2,43 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Tooltip from './Tooltip';
 
-const Refund = ({ toggleTooltip, value, selectedTooltip, sendToServer }) => {
-  const [refundable, setRefundalbe] = useState(false);
+const Refund = ({
+  value,
+  selectedTooltip,
+  setSeletedTooltip,
+  filteredCondition,
+  setFilteredCondition,
+}) => {
+  const [isRefundable, setIsRefundable] = useState(false);
 
   const moveSwitch = () => {
-    setRefundalbe(!refundable);
+    setIsRefundable(!isRefundable);
+    //  setIsRefundalbe(prevState => !prevState); 기록!
   };
 
   return (
-    <StyledRefund onClick={() => toggleTooltip(value)}>
+    <StyledRefund onClick={() => setSeletedTooltip(value)}>
       <Title border={selectedTooltip === value}>유연한 환불 정책</Title>
       {selectedTooltip === value && (
         <Tooltip>
           <OptionWrapper>
             <Option>유연한 환불 정책을 제공하는 숙소만 검색 결과에 표시</Option>
-            <SwitchWrapper onClick={moveSwitch} bgColor={refundable}>
-              <Switch move={refundable} />
+            <SwitchWrapper onClick={moveSwitch} bgColor={isRefundable}>
+              <Switch move={isRefundable} />
             </SwitchWrapper>
           </OptionWrapper>
           <Selection>
-            <Delete onClick={moveSwitch} color={refundable}>
+            <Delete onClick={moveSwitch} color={isRefundable}>
               지우기
             </Delete>
             <Save
               onClick={e => {
                 e.stopPropagation();
-                sendToServer(refundable);
+                setFilteredCondition({
+                  ...filteredCondition,
+                  is_refund: isRefundable,
+                });
+                setSeletedTooltip(null);
               }}
             >
               저장

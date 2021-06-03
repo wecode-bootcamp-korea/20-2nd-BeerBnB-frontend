@@ -7,7 +7,7 @@ const RoomTypeOption = ({ changeOption, isChecked, room }) => {
       <Input
         type="checkbox"
         name={room.type}
-        onClick={e => changeOption(e.target)}
+        onClick={changeOption}
         checked={isChecked[room.type]}
       />
       <Label htmlFor="beer">

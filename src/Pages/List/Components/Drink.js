@@ -3,29 +3,36 @@ import Tooltip from './Tooltip';
 import DrinkOption from './DrinkOption';
 import styled from 'styled-components';
 
-const DRINK_LIST = [
-  { id: 1, type: '맥주', info: '세계 유명 맥주 제공' },
+const DRINKS_LIST = [
+  { id: 1, type: '비어', info: '세계 유명 맥주 제공' },
   { id: 2, type: '위스키', info: '고급 위스키 무한 제공' },
   { id: 3, type: '와인', info: '세계적인 와이너리에서 공수한 와인 제공' },
   { id: 4, type: '칵테일', info: '각종 앉은뱅이술 제공' },
 ];
 
 const INITIAL_CHECKED_STATUS = {
-  맥주: false,
+  비어: false,
   위스키: false,
   와인: false,
   칵테일: false,
 };
 
-const Drink = ({ toggleTooltip, value, selectedTooltip, sendToServer }) => {
+const Drink = ({
+  value,
+  selectedTooltip,
+  setSeletedTooltip,
+  filteredArrayTypeCondition,
+  setFilteredArrayTypeCondition,
+}) => {
   const [selectedDrinks, setSelectedDrinks] = useState([]);
   const [isChecked, setIsChecked] = useState(INITIAL_CHECKED_STATUS);
 
-  const changeOption = item => {
-    setIsChecked({ ...isChecked, [item.name]: item.checked });
-    selectedDrinks.includes(item.name)
-      ? setSelectedDrinks(selectedDrinks.filter(drink => drink !== item.name))
-      : setSelectedDrinks([...selectedDrinks, item.name]);
+  const changeOption = e => {
+    const { name, checked } = e.target;
+    setIsChecked({ ...isChecked, [name]: checked });
+    selectedDrinks.includes(name)
+      ? setSelectedDrinks(selectedDrinks.filter(drink => drink !== name))
+      : setSelectedDrinks([...selectedDrinks, name]);
   };
 
   const deleteData = () => {
@@ -34,12 +41,12 @@ const Drink = ({ toggleTooltip, value, selectedTooltip, sendToServer }) => {
   };
 
   return (
-    <StyledDrink onClick={() => toggleTooltip(value)}>
+    <StyledDrink onClick={() => setSeletedTooltip(value)}>
       <Title border={selectedTooltip === value}>주류</Title>
       {selectedTooltip === value && (
         <Tooltip>
           <OptionWrapper>
-            {DRINK_LIST.map(drink => {
+            {DRINKS_LIST.map(drink => {
               return (
                 <DrinkOption
                   key={drink.id}
@@ -57,7 +64,11 @@ const Drink = ({ toggleTooltip, value, selectedTooltip, sendToServer }) => {
             <Save
               onClick={e => {
                 e.stopPropagation();
-                sendToServer(selectedDrinks);
+                setFilteredArrayTypeCondition({
+                  ...filteredArrayTypeCondition,
+                  amenity: selectedDrinks,
+                });
+                setSeletedTooltip(null);
               }}
             >
               저장

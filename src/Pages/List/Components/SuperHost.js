@@ -2,32 +2,42 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Tooltip from './Tooltip';
 
-const SuperHost = ({ toggleTooltip, value, selectedTooltip, sendToServer }) => {
-  const [superHost, setSuperHOst] = useState(false);
+const SuperHost = ({
+  value,
+  selectedTooltip,
+  setSeletedTooltip,
+  filteredCondition,
+  setFilteredCondition,
+}) => {
+  const [isSuperHost, setIsSuperHOst] = useState(false);
 
   const moveSwitch = () => {
-    setSuperHOst(!superHost);
+    setIsSuperHOst(!isSuperHost);
   };
 
   return (
-    <StyledSuperHost onClick={() => toggleTooltip(value)}>
+    <StyledSuperHost onClick={() => setSeletedTooltip(value)}>
       <Title border={selectedTooltip === value}>슈퍼호스트</Title>
       {selectedTooltip === value && (
         <Tooltip>
           <OptionWrapper>
             <Option>슈퍼 호스트의 숙소만 검색 결과에 표시</Option>
-            <SwitchWrapper onClick={moveSwitch} bgColor={superHost}>
-              <Switch move={superHost} />
+            <SwitchWrapper onClick={moveSwitch} bgColor={isSuperHost}>
+              <Switch move={isSuperHost} />
             </SwitchWrapper>
           </OptionWrapper>
           <Selection>
-            <Delete onClick={moveSwitch} color={superHost}>
+            <Delete onClick={moveSwitch} color={isSuperHost}>
               지우기
             </Delete>
             <Save
               onClick={e => {
                 e.stopPropagation();
-                sendToServer(superHost);
+                setFilteredCondition({
+                  ...filteredCondition,
+                  is_super: isSuperHost,
+                });
+                setSeletedTooltip(null);
               }}
             >
               저장
