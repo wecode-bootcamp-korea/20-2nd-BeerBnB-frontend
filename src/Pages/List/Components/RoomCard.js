@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ImgSlider, { SlideBtn } from './ImgSlider';
 import styled from 'styled-components';
 import { LIST_API } from '../../../config';
-import { calculateAvgRating } from '../../../utilityFunc';
+import { calculateAvgRating, currency } from '../../../utilityFunc';
 
 const RoomCard = ({ room, setSelectedRoom, wishList }) => {
   const [isWishList, setIsWishList] = useState(false);
@@ -44,10 +44,13 @@ const RoomCard = ({ room, setSelectedRoom, wishList }) => {
             <i className="far fa-heart"></i>
           )}
         </WishList>
-        <Rating>
-          <i className="fas fa-star"></i>
-          <span>{calculateAvgRating(room)}</span>
-        </Rating>
+        <StyledCardFooter>
+          <Rating>
+            <i className="fas fa-star"></i>
+            <span>{calculateAvgRating(room)}</span>
+          </Rating>
+          <StyledPrice>{currency(room.price)}</StyledPrice>
+        </StyledCardFooter>
       </StyledRoomInfo>
     </StyledRoomCard>
   );
@@ -120,12 +123,21 @@ const WishList = styled.button`
 
 const Rating = styled.div`
   display: flex;
-  margin-top: 15px;
   font-weight: bold;
   i {
     color: ${({ theme }) => theme.colors.pointColor};
     margin-right: 5px;
   }
+`;
+
+const StyledPrice = styled.span`
+  font-weight: bold;
+`;
+
+const StyledCardFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
 `;
 
 export default RoomCard;
