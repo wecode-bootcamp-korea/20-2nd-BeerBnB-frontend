@@ -7,6 +7,7 @@ import List from './Pages/List/List';
 import Host from './Pages/Host/Host';
 import WishList from './Pages/WishList/WishList';
 import GlobalStyle from './Styles/globalStyles';
+import Detail from './Pages/Detail/Detail';
 
 class Routes extends React.Component {
   render() {
@@ -19,6 +20,7 @@ class Routes extends React.Component {
             <Route exact path="/list" component={List} />
             <Route exact path="/host" component={Host} />
             <Route exact path="/wishlist" component={WishList} />
+            <Route exact path="/detail/:id" component={Detail} />
           </Switch>
         </Router>
       </ThemeProvider>
