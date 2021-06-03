@@ -1,20 +1,19 @@
 import React from 'react';
+import styled from 'styled-components/macro';
 import ImgSlider, { SlideBtn } from './ImgSlider';
-import styled from 'styled-components';
-import { calculateAvgRating } from '../../../utilityFunc';
+import { calculateAvgRating, currency } from '../../../utilityFunc';
 
-const RoomCard = ({ room, setSelectedRoom, setDelWishList }) => {
+const WishCard = ({ room, key, setSelectedRoom, setDelWishList }) => {
+  console.log(currency(10000));
   return (
     <StyledRoomCard onMouseEnter={() => setSelectedRoom(room)}>
       <ImgSlider room={room} />
-
       <StyledRoomInfo>
         <InfoWrapper>
           <Category>{room.room_type}</Category>
           <Name>{room.room_name}</Name>
-          <Divider />
           <Amenity>
-            <div>{room.amenity.join(' · ')}</div>
+            <StyledAmenity>{room.amenity.join(' · ')}</StyledAmenity>
             <div>장기 숙박 가능 · 세탁기 · 건물 내 무료 주차</div>
             <div>최대 인원 {room.capacity}명</div>
           </Amenity>
@@ -26,20 +25,28 @@ const RoomCard = ({ room, setSelectedRoom, setDelWishList }) => {
         >
           <i class="fas fa-times"></i>
         </StyeldWishList>
-        <Rating>
-          <i className="fas fa-star"></i>
-          <span>{calculateAvgRating(room)}</span>
-        </Rating>
+        <StyledCardFooter>
+          <Rating>
+            <i className="fas fa-star"></i>
+            <span>{calculateAvgRating(room)}</span>
+          </Rating>
+          <StyledPrice>{currency(room.price)}</StyledPrice>
+        </StyledCardFooter>
       </StyledRoomInfo>
     </StyledRoomCard>
   );
 };
 
 const StyledRoomCard = styled.article`
-  display: flex;
-  width: 800px;
-  padding: 20px 0; //padding 0 추가하기
-  border-bottom: 1px solid #ebebeb;
+  position: relative;
+  display: inline-block;
+  width: 300px;
+  margin: 10px;
+  border: 1px solid #ebebeb;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 20px 20px 29px #e8e8e8, -20px -20px 29px #ffffff;
 
   &:hover {
     ${SlideBtn} {
@@ -49,18 +56,10 @@ const StyledRoomCard = styled.article`
 `;
 
 const StyledRoomInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  width: 476px;
-  height: 200px;
+  padding: 0 15px 15px;
 `;
 
-const InfoWrapper = styled.div`
-  color: #717171;
-  font-size: ${({ theme }) => theme.fontSizes.m};
-`;
+const InfoWrapper = styled.span``;
 
 const Category = styled.div`
   margin-bottom: 10px;
@@ -70,12 +69,6 @@ const Name = styled.div`
   color: ${({ theme }) => theme.colors.textColor};
   font-size: ${({ theme }) => theme.fontSizes.l};
   font-weight: bold;
-`;
-
-const Divider = styled.div`
-  width: 32px;
-  margin-top: 15px;
-  border-top: 1px solid ${({ theme }) => theme.colors.borderColor};
 `;
 
 const Amenity = styled.div`
@@ -88,20 +81,22 @@ const Amenity = styled.div`
   }
 `;
 
+const StyledAmenity = styled.div``;
+
 const StyeldWishList = styled.button`
   position: absolute;
-  right: 0px;
+  top: 10px;
+  right: 10px;
   font-size: ${({ theme }) => theme.fontSizes.xl};
   cursor: pointer;
 
   i {
-    color: grey;
+    color: #fff;
   }
 `;
 
 const Rating = styled.div`
   display: flex;
-  margin-top: 15px;
   font-weight: bold;
   i {
     color: ${({ theme }) => theme.colors.pointColor};
@@ -109,4 +104,14 @@ const Rating = styled.div`
   }
 `;
 
-export default RoomCard;
+const StyledPrice = styled.span`
+  font-weight: bold;
+`;
+
+const StyledCardFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+`;
+
+export default WishCard;

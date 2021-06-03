@@ -1,7 +1,8 @@
 export const currency = number => {
-  new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(
-    number
-  );
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'KRW',
+  }).format(number);
 };
 export const calculateAvgRating = data => {
   //더 간단한 방법은?

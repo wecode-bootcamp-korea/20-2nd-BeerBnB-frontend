@@ -32,8 +32,8 @@ const StyledSlider = styled.article`
   position: relative;
   width: 300px;
   height: 200px;
-  margin-right: 20px;
-  border-radius: 15px;
+  margin-bottom: 20px;
+  /* border-radius: 15px; */
   overflow: hidden;
 `;
 

@@ -1,20 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
-import RoomCard from './RoomCard';
+import styled from 'styled-components/macro';
+import WishCard from './WishCard';
 
-const RoomCardList = ({
+const WishRoomList = ({
   roomList,
   selectedRoom,
   setSelectedRoom,
-  calculateAvgRating,
   setDelWishList,
 }) => {
   return (
-    <StyledList>
+    <StyledWishList>
       {roomList &&
         roomList.map(room => {
           return (
-            <RoomCard
+            <WishCard
               room={room}
               key={room.room_id}
               setSelectedRoom={setSelectedRoom}
@@ -22,12 +21,14 @@ const RoomCardList = ({
             />
           );
         })}
-    </StyledList>
+    </StyledWishList>
   );
 };
 
-const StyledList = styled.section`
-  cursor: pointer;
+const StyledWishList = styled.section`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 800px;
 `;
-
-export default RoomCardList;
+export default WishRoomList;
