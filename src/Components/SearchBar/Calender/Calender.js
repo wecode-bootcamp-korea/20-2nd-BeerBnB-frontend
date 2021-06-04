@@ -32,6 +32,6 @@ function Calender(props) {
 export default Calender;
 
 const CalenderContainer = styled.div`
-  position: fixed;
+  position: absolute;
   top: 160px;
 `;
