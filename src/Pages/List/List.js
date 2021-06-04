@@ -6,7 +6,9 @@ import MapWrapper from './Components/MapWrapper';
 import Pagination from './Components/Pagination';
 import Welcome from './Components/Welcome';
 import { LIST_API } from '../../config';
-
+import SearchBar from '../../Components/SearchBar/SearchBar';
+import Nav from '../../Components/NavBar/NavBar';
+import NavBar from '../../Components/NavBar/NavBar';
 const List = () => {
   const [currentPageRoomList, setCurrentPageRoomList] = useState(null);
   const [everyRoom, setEveryRoom] = useState(null);
@@ -92,6 +94,8 @@ const List = () => {
 
   return (
     <>
+      <NavBar />
+      <SearchBar />
       {currentPageRoomList && (
         <StyledList>
           <StyledRoomWrapper>

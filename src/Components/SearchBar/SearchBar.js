@@ -12,6 +12,12 @@ function SearchBar() {
   const [checkInDay, setCheckInDay] = useState('');
   const [checkOutDay, setCheckOutDay] = useState('');
   const [searchPlace, setSearchPlace] = useState('');
+  const [currentPeople, setCurrentPeople] = useState('');
+  const [peopleNum, setPeopleNum] = useState({
+    adult: 0,
+    child: 0,
+    baby: 0,
+  });
 
   const calenderEl = useRef();
   const ClickOutSide = () => {};
@@ -21,6 +27,7 @@ function SearchBar() {
       checkin: moment(checkInDay).format('YYYY-MM-DD'),
       checkout: moment(checkOutDay).format('YYYY-MM-DD'),
       city: searchPlace,
+      adult: peopleNum,
     };
     const checkInfoQuery = new URLSearchParams(checkInfo).toString();
     fetch(`${FILTER_URL}/rooms/filter?${checkInfoQuery}`, {
@@ -34,12 +41,12 @@ function SearchBar() {
   const checkPeopleOpen = () => {
     setCheckPeopleBtn(!checkPeopleBtn);
   };
+  const checkPeopleNum = e => {
+    setPeopleNum(e.target.value);
+  };
   const SearchPlace = e => {
     setSearchPlace(e.target.value);
   };
-  useEffect(() => {
-    window.addEventListener('mousedown', ClickOutSide);
-  });
 
   return (
     <>
@@ -71,7 +78,13 @@ function SearchBar() {
           </SearchBarBtn>
           <SearchBarBtn onClick={checkPeopleOpen}>
             <div>인원</div>
-            <div>게스트 추가</div>
+            <div>
+              <input
+                type="text"
+                placeholder="어디로 여행가세요?"
+                onChange={checkPeopleNum}
+              ></input>
+            </div>
           </SearchBarBtn>
           <ZoomImgContainer onClick={SearchBtn}>
             <ZoomImg />
@@ -87,7 +100,12 @@ function SearchBar() {
             setCalenderBtn={setCalenderBtn}
           />
         )}
-        {checkPeopleBtn && <CheckPeople />}
+        {checkPeopleBtn && (
+          <CheckPeople
+            currentPeople={currentPeople}
+            setCurrentPeople={setCurrentPeople}
+          />
+        )}
       </Container>
     </>
   );
@@ -119,16 +137,19 @@ const ZoomImg = styled.img.attrs(() => ({
   height: 20px;
 `;
 const SearchBarBtn = styled.div`
+  position: relative;
   width: 170px;
   height: 65px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-left: 20px;
+  transition: 0.5s;
   :active {
     box-shadow: 2px 2px 0 rgb(0, 0, 0, 0.5);
   }
   :hover {
+    transition: 0.5s;
     background-color: #fff1eb;
     border-radius: 40px;
     cursor: pointer;

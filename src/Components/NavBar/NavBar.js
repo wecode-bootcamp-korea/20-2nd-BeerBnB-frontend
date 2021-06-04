@@ -89,9 +89,15 @@ const MenuImg = styled.img.attrs(() => ({
   alt: '메뉴버튼',
   src: '/images/menu.png',
 }))`
-  width: 13px;
-  height: 13px;
+  width: 20px;
+  height: 20px;
   margin: 0px 0px 0px 5px;
+  :hover {
+    opacity: 0.5;
+  }
+  :active {
+    opacity: 0.1;
+  }
 `;
 
 const MenuBtn = styled.button`
