@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import NavBar from '../../Components/NavBar/NavBar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
+import ListNav from '../../Components/ListNav/ListNav';
 
 function Main() {
   return (
     <BackGroundImg>
-      <NavBar />
-      <SearchBar />
+      <ListNav />
       <Title>
         <Name>비어비앤비</Name>
         <Introduce>비어비앤비가 소개하는 핫플</Introduce>
