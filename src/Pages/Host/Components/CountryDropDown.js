@@ -6,6 +6,9 @@ const CountryDropDown = () => {
     <StyledAddress>
       <label htmlFor="국가/지역">국가/지역</label>
       <select id="country" name="country" className="form-control">
+        <option selected disabled hidden>
+          국가를 선택해 주세요.
+        </option>
         <option value="Afghanistan">Afghanistan</option>
         <option value="Åland Islands">Åland Islands</option>
         <option value="Albania">Albania</option>
@@ -137,7 +140,7 @@ const CountryDropDown = () => {
         <option value="Kazakhstan">Kazakhstan</option>
         <option value="Kenya">Kenya</option>
         <option value="Kiribati">Kiribati</option>
-        <option value="Korea, Democratic People's Republic of" selected>
+        <option value="Korea, Democratic People's Republic of">
           Korea, Democratic People's Republic of
         </option>
         <option value="Korea, Republic of">Korea, Republic of</option>
@@ -306,16 +309,16 @@ const StyledAddress = styled.div`
 
   select {
     width: 410px;
-    height: 50px;
-    padding: 12px;
+    height: 40px;
+    padding: 5px 15px;
     margin-bottom: 10px;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 1px solid grey;
+    border-radius: 10px;
     font-size: 16px;
+    outline: none;
 
     &:focus {
-      margin-bottom: 8px;
-      border: 2px solid black;
+      border: 1px solid black;
     }
   }
 `;

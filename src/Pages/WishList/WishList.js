@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import Filter from './Components/Filter';
-import RoomCardList from './Components/RoomCardList';
 import MapWrapper from './Components/MapWrapper';
 import Welcome from './Components/Welcome';
+import WishRoomList from './Components/WishRoomList';
 import { LIST_API } from '../../config';
 
 const WishList = () => {
@@ -30,31 +30,21 @@ const WishList = () => {
       .then(data => {
         setCurrentPageRoomList(data.result);
       });
-
-    // return () => {
-    //   const option = {
-    //     method: 'DELETE',
-    //   };
-    //   const url = `${LIST_API}/rooms/wishlist/${delWishList}`;
-    //   fetch(url, option);
-    // };
   }, []);
 
   useEffect(() => {
     const option = {
       method: 'DELETE',
     };
-    const url = `${LIST_API}/rooms/wishlist/${delWishList}`;
-    fetch(url, option).then(() => {
-      const url2 = `${LIST_API}/rooms/wishlist`;
-      fetch(url2)
-        .then(res => res.json())
-        .then(data => {
-          setCurrentPageRoomList(data.result);
-        });
-    });
+    const del_url = `${LIST_API}/rooms/wishlist/${delWishList}`;
+    const refresh_url = `${LIST_API}/rooms/wishlist`;
+    fetch(del_url, option) //
+      .then(() => {
+        fetch(refresh_url)
+          .then(res => res.json())
+          .then(data => setCurrentPageRoomList(data.result));
+      });
   }, [delWishList]);
-
   return (
     <>
       {currentPageRoomList && (
@@ -71,7 +61,7 @@ const WishList = () => {
               setFilteredArrayTypeCondition={setFilteredArrayTypeCondition}
             />
             <Welcome />
-            <RoomCardList
+            <WishRoomList
               roomList={currentPageRoomList}
               selectedRoom={selectedRoom}
               setSelectedRoom={setSelectedRoom}

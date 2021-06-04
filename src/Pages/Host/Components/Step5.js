@@ -11,6 +11,7 @@ const Step5 = ({ setCurrentPage, sendToServer }) => {
             <br />
             숙소 등록이 완료되었습니다!
           </StyledTitle>
+          <StyledSummary></StyledSummary>
         </section>
         <aside>
           <img
@@ -31,14 +32,14 @@ const StyledHostPage = styled.div`
   width: 1200px;
   height: 100vh;
   margin: 0 auto;
-  padding: 30px;
+  padding: 10px 30px;
 `;
 
 const StyledHostStart = styled.div`
   display: flex;
   justify-content: center;
   width: 1200px;
-  height: 770px;
+  height: 730px;
 
   section {
     display: flex;
@@ -61,12 +62,12 @@ const StyledHostStart = styled.div`
 
 const StyledTitle = styled.h1`
   margin: 30px 0 60px;
+  color: transparent;
+  background: linear-gradient(66deg, #3fcaa1 0%, #32a180 54%, #0c261e 100%);
   font-size: 42px;
-`;
-
-const StyledDirection = styled.div`
-  margin-bottom: 25px;
-  font-size: ${({ theme }) => theme.fontSizes.l};
+  font-weight: bold;
+  background-clip: text;
+  -webkit-background-clip: text;
 `;
 
 const StyledSummary = styled.div`
@@ -82,7 +83,7 @@ const StyledBtn = styled.div`
 `;
 
 const StyledPrevtBtn = styled.button`
-  color: #008489;
+  color: #3fcaa1;
   font-size: inherit;
   cursor: pointer;
 `;
@@ -90,7 +91,7 @@ const StyledPrevtBtn = styled.button`
 const StyledNextBtn = styled.button`
   padding: 10px 15px;
   margin: 12px 0 28px;
-  background-color: #008489;
+  background-color: #3fcaa1;
   color: #fff;
   border-radius: 10px;
   font-size: inherit;

@@ -94,11 +94,15 @@ const StyledPostCode = styled.div`
 
   input {
     font-size: 16px;
+
+    &:last-child {
+      margin-top: 5px;
+    }
   }
 
   input[type='button'] {
     border: none;
-    background-color: ${({ theme }) => theme.colors.pointColor};
+    background-color: #3fcaa1;
     color: #fff;
   }
 `;
