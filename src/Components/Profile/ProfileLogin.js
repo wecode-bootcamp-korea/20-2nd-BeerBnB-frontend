@@ -10,7 +10,6 @@ function ProfileLogin(props) {
   console.log(isMenuOpen);
 
   const SocialLogin = () => {
-    setIsLogin(true);
     Kakao.Auth.login({
       scope: 'account_email, gender, birthday',
       success: res => {
@@ -24,6 +23,7 @@ function ProfileLogin(props) {
           .then(res => {
             localStorage.setItem('Authorization', res.access_token);
             if (res.message === 'created user') {
+              setIsLogin(true);
               Kakao.Auth.logout();
               history.push('/');
               alert('환영합니다');
