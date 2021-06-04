@@ -14,7 +14,7 @@ function ProfileUpload() {
     fetch(`${USER_BASE_URL}/user/${path}`, {
       method: 'POST',
       headers: {
-        Authorization: localStorage.getItem('access_token'),
+        Authorization: localStorage.getItem('Authorization'),
       },
       body: profileImg,
     }).then(res => console.log(res.json()));

@@ -22,7 +22,7 @@ function ProfileLogin(props) {
         })
           .then(res => res.json())
           .then(res => {
-            localStorage.setItem('access_token', res.access_token);
+            localStorage.setItem('Authorization', res.access_token);
             if (res.message === 'created user') {
               Kakao.Auth.logout();
               history.push('/');
